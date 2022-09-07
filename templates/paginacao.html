@@ -1,0 +1,7 @@
+{% load static %}
+
+<div class="section-header text-center">
+    {% if is_paginated %}
+{% include "pagination.html" with page=page_obj %}
+{% endif %}
+</div>
