@@ -1,0 +1,189 @@
+{% extends 'base2.html' %}
+
+{% load static %}
+{% load trees_tags %}
+
+{% block title %}
+{% if squarie %}
+{{ square.name }}
+{% else %}
+  Tree
+{% endif %}
+{% endblock title %}
+
+{% block content %}
+<section id="tree" class="section-padding">  
+<div class="container-fluid"valign="top"> <!--my-3-->
+    
+    <div class="row" valign="top"><!--row-->
+        <div class="col-lg-2">
+           
+            
+            <div class="section-header text-center mb-8" >          
+                <!--h2 class="section-title wow fadeInDown mb-4" data-wow-delay="0.3s">Espécies</h2-->
+                <div class="section-title wow fadeInDown mb-4" data-wow-delay="0.3s">
+                <div class="container-img mt-0">
+
+                    <img src="{% static 'icons/unknown.png' %}">
+                  </div>
+                  <div class="container-temp mx-2 my-1">
+                    <div>22</div>
+                    <span>°c</span>
+                  </div>
+                  <div class="weather py-2">Nublado</div>
+          <div class="humid"> Umidade: <span class="humidit">50%</span></div>
+        </div>
+                
+            </div>
+            <ul class="list-group mb-3 mb-lg-8">
+                <!--<a class="text-decoration-none list-group-item list-group-item-light {% if not square %}active{% endif %}"
+                    href="% url 'trees:list' %">
+                    Todos as praças
+                </a>-->
+
+                {% for praca in squaries %}
+                <a class="text-decoration-none  list-group-item-succes {% if square == praca %}active{% endif %}"
+                    href="{{ praca.get_absolute_url }}">
+                    {{ praca.name }}
+                </a>
+                {% endfor %}
+            </ul>
+            
+          
+            <div class="card">
+                <div class="city">Monte Alto - SP</div>
+                <div class="date">Terça, 1 Dezembro 2020</div>
+         
+          
+          
+      </div>
+        </div>
+       
+        <!--fim col-lg-3-->
+   
+        <div class="col-lg-10">
+                            
+            <div class="row" valign="top">
+            {% for tree in tree_list %}
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <a class="text-decoration-none text-dark" href="#modal{{ tree.slug }}"data-toggle="modal">   
+            <div class="card" valign="top">
+            
+                <div class="tree-item wow fadeInRight" data-wow-delay="0.8s">
+                   <!-- <div class="tree-img"><img class="card-img-top" src="/media/tree.image1" alt=" tree.altimg1 ">
+                    </div> -->  
+                <div class="contetn">
+                    <div class="info-text">
+                        <a class="info-text" href="#modal{{ tree.slug }}"data-toggle="modal"><h3>{{ tree.name }}</a></h3>
+                    <p><strong>Espécie: </strong><em>{{tree.specie}}</em></p>
+                    <p><strong>Família: </strong>{{ tree.family }}</strong></p><br>
+                    <p><a class="info-text" href="#modalpraca{{ tree.slug }}"data-toggle="modal"><strong>{{ tree.square }}</strong></p>
+                    </div></a>
+                    
+                    
+                </div>
+               
+                </div>
+            </div>
+        </div>
+        <!-- Modal 1 -->
+            <div class="modal fade bd-example-modal-lg" id="modal{{ tree.slug }}"  role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a class="text-decoration-none text-dark" href="#modal{{ tree.slug }}"data-toggle="modal"></a><h3 class="font-weight-bold">{{ tree.name }}</h3>
+                            
+                            
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        
+                        
+                        <div class="col-lg-12">
+                            <p>Espécie: <strong><em>{{tree.specie}}</em></strong></p>
+                            <p>Família: <strong>{{tree.family}}</strong></p>
+                            <p>Origem: <strong>{{tree.source}}</strong></p>
+                            <p>Quantidade: <strong>{{tree.quantidade}}</strong></p>
+                        
+                        </div>
+                       
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-6 col-md-6 ">
+                                    <img class="img-fluid " src="/media/{{tree.image1}}" alt="{{ tree.altimg1 }}">
+                                    </div>
+                                    <div class="col-6 col-md-6">
+                                    <img class="img-fluid " src="/media/{{tree.image2}}" alt="{{ tree.altimg2 }}">
+                                    </div>
+                                    <div class="col-lg-12">
+                                     <p><br></p>
+                                    <p>{{ tree.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!--final modal-->
+        <!-- Modal 1 -->
+        <div class="modal fade bd-example-modal-lg" id="modalpraca{{ tree.slug }}"  role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a class="text-decoration-none text-dark" href="#modal{{ tree.slug }}"data-toggle="modal"></a><h3 class="font-weight-bold">{{ tree.square.name }}</h3><br>
+                        
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                   
+                    <div class="modal-body">
+                          <div class="container-fluid md-4">
+                            <div class="row">
+                                <div class="col-6 col-md-6 ">
+                                <img class="img-fluid " src="/media/{{tree.square.image1}}" alt="{{ tree.square.altimg1 }}">
+                                </div>
+                                <div class="col-6 col-md-6">
+                                <img class="img-fluid " src="/media/{{tree.square.image2}}" alt="{{ tree.square.altimg2 }}">
+                                </div>
+                                <div class="col-lg-12">
+                                    <br>
+                                   <p><strong>{{tree.square.address}}</strong></p><br>
+                                    <p></p>
+                                <p>{{ tree.square.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--final modal-->
+        {% endfor %}
+    </div>
+               <!-- % if forloop.counter|divisibleby:"3" and not forloop.last %
+           
+            <div class="card-deck mb-3">
+                % endif %
+             
+
+                % if tree_list|length|remainder == 2 %
+                <div class="card border-0"></div>
+                % elif tree_list|length|remainder == 1 %
+                <div class="card border-0"></div>
+                <div class="card border-0"></div>
+                % endif %
+            </div>-->
+
+            
+        </div>
+    </div>
+</div> <!--final container-->
+</section>
+ <!-- paginação -->
+ {% include 'paginacao.html' %}
+ <!-- paginação End -->
+{% endblock content %}

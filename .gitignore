@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 
 /pysrc/settings-cp.py
+templates2/

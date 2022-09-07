@@ -45,6 +45,7 @@ INSTALLED_APPS = [
      # my apps
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
+    'trees.apps.TreesConfig',
 
 ]
 
