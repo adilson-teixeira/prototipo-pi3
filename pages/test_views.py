@@ -20,11 +20,11 @@ class TestHomePageView:
         assert reverse("pages:home") == "/"
         assert resolve("/").view_name == "pages:home"
 
-    """def test_status_code(self, home_response):
+    def test_status_code(self, home_response):
         assert home_response.status_code == 200
 
     def test_template(self, home_response):
-        assertTemplateUsed(home_response, "home.html")"""
+        assertTemplateUsed(home_response, "home.html")
 
 
 class TestAboutView:
@@ -32,8 +32,8 @@ class TestAboutView:
         assert reverse("pages:about") == "/about/"
         assert resolve("/about/").view_name == "pages:about"
 
-    """def test_status_code(self, about_response):
+    def test_status_code(self, about_response):
         assert about_response.status_code == 200
 
     def test_template(self, about_response):
-        assertTemplateUsed(about_response, "about.html")"""
+        assertTemplateUsed(about_response, "about.html")
