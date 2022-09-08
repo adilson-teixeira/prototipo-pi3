@@ -1,7 +1,7 @@
 import pytest
 
 #from orders.tests.factories import ItemFactory, OrderFactory
-#from trees.tests.factories import SquareFactory, SpecieFactory, FamilyFactory, TreeFactory 
+from trees.tests.factories import SquareFactory, SpecieFactory, FamilyFactory, TreeFactory 
 
 
 @pytest.fixture(autouse=True)
